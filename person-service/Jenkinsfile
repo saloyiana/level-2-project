@@ -1,0 +1,74 @@
+
+pipeline {
+  agent {
+    kubernetes {
+      yaml """
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    service_name: person-service
+    service_type: REST
+spec:
+  containers:
+  - name: dnd
+    image: docker:latest
+    command: 
+    - cat
+    tty: true
+    volumeMounts: 
+    - mountPath: /var/run/docker.sock
+      name: docker-sock
+  - name: kubectl
+    image: bryandollery/terraform-packer-aws-alpine
+    command:
+    - cat
+    tty: true
+  volumes:
+  - name: docker-sock
+    hostPath:
+      path: /var/run/docker.sock  
+      type: Socket
+"""
+    }
+  }
+  environment {
+    CREDS = credentials('sara_docker')
+    DOCKER_NAMESPACE = 'saloyiana'
+    SERVICE_NAME = 'person-service'
+    TOKEN=credentials('1cb6a964-0d86-4cc5-98a6-89923bacd35d')
+}
+  stages {
+      stage("Build") {
+          steps {
+              container('dnd') {
+                  sh '''
+                      cd $SERVICE_NAME
+                      docker build --tag $DOCKER_NAMESPACE/$SERVICE_NAME .
+                  '''
+              }
+          }
+      }
+      stage("Release") {
+          steps {
+              container('dnd') {
+                  sh '''
+                      docker login -p $CREDS_PSW -u $CREDS_USR
+                      docker push $DOCKER_NAMESPACE/$SERVICE_NAME
+                  '''
+              }
+          }
+      }
+      stage("Deploy") {
+          steps {
+              container('kubectl') {
+                  sh '''
+                      cd $SERVICE_NAME
+                      kubectl --token=$TOKEN -n app get all
+                      kubectl --token=$TOKEN -n app apply -f deploy.yaml
+                  '''
+              }
+          }
+      }
+  }
+}
