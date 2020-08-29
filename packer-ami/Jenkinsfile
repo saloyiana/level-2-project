@@ -30,6 +30,10 @@ stage('build'){
 steps{ 
  container('packer') 
 {
-sh 'packer build packer.json' }
+sh '''
+cd packer-ami/
+packer build packer.json
+'''
+ }
 } }}
 }
