@@ -1,6 +1,6 @@
 # Level 2 Assessment (ALPHA)
 
-## Structure
+### Structure
 You must deploy a microservice application on a kubernetes platform in AWS and expose it to the public internet. You must provide a short presentation of your work, including a live demo of the running system. You must demonstrate a githook triggering a build and release of the application. You do not have to demonstrate the deployment of the infrastructure or platform.
 
 Points are detailed below. 
