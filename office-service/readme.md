@@ -7,4 +7,3 @@ Exposes an http service endpoint on port 80 with the /office/ context path
 eg:
 
 http://{host}/office/
-.
