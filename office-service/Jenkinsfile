@@ -35,7 +35,7 @@ spec:
     CREDS = credentials('sara_docker')
     DOCKER_NAMESPACE = 'saloyiana'
     SERVICE_NAME = 'office-service'
-    TOKEN=credentials('bf4b323d-0c0a-420b-a22c-ab983f4620d4')
+    TOKEN=credentials('b5dd4ed7-aa97-4146-aea5-6ca90d2cb48f')
 }
   stages {
       stage("Build") {
