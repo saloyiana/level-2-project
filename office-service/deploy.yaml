@@ -2,6 +2,7 @@ iapiVersion: apps/v1
 kind: Deployment
 metadata:
   name: office-service
+  namespace: app
   labels:
     app: office-service
     type: api

@@ -63,8 +63,8 @@ spec:
               container('kubectl') {
                   sh '''
                       cd $SERVICE_NAME
-                      kubectl --token=$TOKEN -n test get all
-                      kubectl --token=$TOKEN -n test apply -f deploy.yaml
+                      kubectl --token=$TOKEN -n app get all
+                      kubectl --token=$TOKEN -n app apply -f deploy.yaml
                   '''
               }
           }

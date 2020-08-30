@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: main-service
-  namespace: test
+  namespace: app
   labels:
     app: main-service
     type: api
