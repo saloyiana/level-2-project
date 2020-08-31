@@ -1,3 +1,4 @@
+.PHONY
 up: cluster taint jenkins
 cluster:
 	k3d cluster create alpha \
@@ -13,5 +14,5 @@ taint:
 	kubectl taint nodes k3d-alpha-server-0 key=value:NoSchedule
 jenkins-up:
 	cd jenkins/
-	. jenkins
+	. jenkins.sh
 	kubectl create rolebinding jenkins --clusterrole=admin --serviceaccount=jenkins:jenkins --namespace=app
