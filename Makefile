@@ -10,7 +10,7 @@ cluster:
 	    --agents 3
 
 taint:
-	kubectl taint nodes k3d-labs-server-0 key=value:NoSchedule
+	kubectl taint nodes k3d-alpha-server-0 key=value:NoSchedule
 jenkins:
 	git clone https://github.com/saloyiana/level-2-project.git
 	cd level-2-project/jenkins/
