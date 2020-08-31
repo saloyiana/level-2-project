@@ -11,8 +11,7 @@ cluster:
 
 taint:
 	kubectl taint nodes k3d-alpha-server-0 key=value:NoSchedule
-jenkins:
-	git clone https://github.com/saloyiana/level-2-project.git
-	cd level-2-project/jenkins/
+jenkins-up:
+	cd jenkins/
 	. jenkins
 	kubectl create rolebinding jenkins --clusterrole=admin --serviceaccount=jenkins:jenkins --namespace=app
