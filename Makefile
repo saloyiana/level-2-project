@@ -1,4 +1,4 @@
-up: cluster taint jenkins
+up: cluster taint
 cluster:
 	k3d cluster create alpha \
 	    -p 80:80@loadbalancer \
@@ -11,7 +11,3 @@ cluster:
 
 taint:
 	kubectl taint nodes k3d-alpha-server-0 key=value:NoSchedule
-jenkins-up:
-	cd jenkins/
-	source jenkins.sh 
-	kubectl create rolebinding jenkins --clusterrole=admin --serviceaccount=jenkins:jenkins --namespace=app
