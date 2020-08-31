@@ -1,3 +1,3 @@
 # KH Labs - Sandbox
-## Used for intro to k8s
+# Used for intro to k8s
 
