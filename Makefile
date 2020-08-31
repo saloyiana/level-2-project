@@ -1,3 +1,4 @@
+up: cluster taint jenkins
 cluster:
 	k3d cluster create alpha \
 	    -p 80:80@loadbalancer \
