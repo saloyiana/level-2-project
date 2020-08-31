@@ -13,5 +13,5 @@ taint:
 	kubectl taint nodes k3d-alpha-server-0 key=value:NoSchedule
 jenkins-up:
 	cd jenkins/
-	./jenkins.sh 
+	source jenkins.sh 
 	kubectl create rolebinding jenkins --clusterrole=admin --serviceaccount=jenkins:jenkins --namespace=app
