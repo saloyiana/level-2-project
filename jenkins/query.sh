@@ -5,3 +5,5 @@ echo username: $(kubectl -n jenkins --container jenkins exec $POD -- env | grep 
 echo password: $(kubectl -n jenkins --container jenkins exec $POD -- env | grep ADMIN_PASSWORD | sed 's/.*=//')
 echo port: $(kubectl get service jenkins -n jenkins -o json | jq '.spec.ports[0].nodePort')
 kubectl create rolebinding jenkins --clusterrole=admin --serviceaccount=jenkins:jenkins --namespace=app
+kubectl create rolebinding jenkins --clusterrole=admin --serviceaccount=jenkins:default --namespace=elk
+
