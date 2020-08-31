@@ -1,4 +1,3 @@
-.PHONY
 up: cluster taint jenkins
 cluster:
 	k3d cluster create alpha \
