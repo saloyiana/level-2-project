@@ -34,6 +34,16 @@ pipeline {
                         build(job: "main") 
                     }
                 }
+               stage('elk job') {
+                    steps {
+                        build(job: "elk") 
+                    }
+                }
+               stage('grafana job') {
+                    steps {
+                        build(job: "grafana") 
+                    }
+                }
             }
         }
     }
