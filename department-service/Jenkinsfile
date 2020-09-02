@@ -38,17 +38,20 @@ spec:
     TOKEN=credentials('5d7560ab-096d-44cb-bcc5-34c620a38a51')
   }
   stages {
+      
       stage("Build") {
+          when { changeset "**/department-service/**" }
           steps {
-              container('dnd') {
-                  sh '''
-                      cd $SERVICE_NAME
-                      docker build --tag $DOCKER_NAMESPACE/$SERVICE_NAME .
-                  '''
+                  container('dnd') {
+                      sh '''
+                          cd $SERVICE_NAME
+                          docker build --tag $DOCKER_NAMESPACE/$SERVICE_NAME .
+                      '''
+                  }
               }
           }
-      }
       stage("Release") {
+          when { changeset "**/department-service/**" }
           steps {
               container('dnd') {
                   sh '''
@@ -59,6 +62,7 @@ spec:
           }
       }
       stage("Deploy") {
+          when { changeset "**/department-service/**" }
           steps {
               container('kubectl') {
                   sh '''
